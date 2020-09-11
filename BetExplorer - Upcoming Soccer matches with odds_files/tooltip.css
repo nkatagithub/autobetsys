@@ -1,0 +1,92 @@
+.extra-tooltip{
+	position: absolute;
+	background-color: #fff;
+	border: 0.0625rem solid #b71c1c;
+	color: #263238;
+	font-size: 0.75rem;
+	padding: 0.625rem;
+	overflow: visible !important;
+}
+
+.extra-tooltip.et-large{
+	width: 14rem;
+	line-height: 1.25rem;
+}
+
+.extra-tooltip:after,
+.extra-tooltip:before,
+.extra-tooltip:after,
+.extra-tooltip:before{
+	display: block;
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-style: solid;
+}
+
+.extra-tooltip--top{
+	margin-top: 0.625rem;
+}
+/*.extra-tooltip--bottom{
+	margin-top: -0.625rem;
+}*/
+
+.extra-tooltip--top:after,
+.extra-tooltip--top:before{
+	top: -0.5625rem;
+}
+
+.extra-tooltip--bottom:after,
+.extra-tooltip--bottom:before{
+	bottom: -0.5625rem;
+}
+
+.extra-tooltip--top.extra-tooltip--left:before{
+	left: 1rem;
+	border-width: 0 1rem 0.5625rem 0;
+	border-color: transparent transparent #b71c1c transparent;
+}
+.extra-tooltip--top.extra-tooltip--left:after{
+	left: 1rem;
+	margin-top: 0.0625rem;
+	margin-left: 0.0625rem;
+	border-width: 0 0.9375rem 0.5625rem 0;
+	border-color: transparent transparent #fff transparent;
+}
+.extra-tooltip--top.extra-tooltip--right:before{
+	left: calc(100% - 1.5625rem);
+	border-width: 0 0 0.5625rem 1rem;
+	border-color: transparent transparent #b71c1c transparent;
+}
+.extra-tooltip--top.extra-tooltip--right:after{
+	left: calc(100% - 1.5625rem);
+	margin-top: 0.0625rem;
+	margin-left: 0;
+	border-width: 0 0 0.5625rem 0.9375rem;
+	border-color: transparent transparent #fff transparent;
+}
+.extra-tooltip--bottom.extra-tooltip--left:before{
+	left: 1rem;
+	border-width: 0 1rem 0.5625rem 0;
+	border-color: transparent transparent #b71c1c transparent;
+}
+.extra-tooltip--bottom.extra-tooltip--left:after{
+	left: 1rem;
+	margin-top: 0.0625rem;
+	margin-left: 0.0625rem;
+	border-width: 0 0.9375rem 0.5625rem 0;
+	border-color: transparent transparent #fff transparent;
+}
+.extra-tooltip--bottom.extra-tooltip--right:before{
+	left: calc(100% - 1.5625rem);
+	border-width: 0.5625rem 0 0 1rem;
+	border-color: #b71c1c transparent transparent transparent;
+}
+.extra-tooltip--bottom.extra-tooltip--right:after{
+	left: calc(100% - 1.5625rem);
+	bottom: -0.5rem;
+	margin-left: 0;
+	border-width: 0.5625rem 0 0 0.9375rem;
+	border-color: #fff transparent transparent transparent;
+}

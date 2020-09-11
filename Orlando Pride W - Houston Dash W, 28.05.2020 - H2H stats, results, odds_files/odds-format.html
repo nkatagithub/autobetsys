@@ -1,0 +1,311 @@
+
+		var oddsformater = (function()
+		{
+			var oddsportalFormater = {
+	oddsFormat: 1,
+	handicapFormat : 1,
+
+
+	setOddsFormat : function (oddsFormat)
+	{
+		this.oddsFormat = oddsFormat;
+	},
+
+	setHandicapFormat : function (handicapFormat)
+	{
+		this.handicapFormat = handicapFormat;
+	},
+
+
+	formatHandicap : function(handicap)
+	{
+		handicap = 1*handicap;
+		switch(this.handicapFormat)
+		{
+			case 1:
+				return handicap;
+			case 2:
+				return this.formatHandicapHalfs(handicap);
+			case 3:
+				return this.formatHandicapUs(handicap);
+			case 4:
+				return this.formatHandicapHalfsQuarterOnly(handicap);
+			case 5:
+				return this.formatHandicapUs(handicap);
+			case 6:
+				return this.formatHandicapHalfsQuarterOnly(handicap);
+		}
+	},
+
+	usFloat : function(num)
+	{
+
+		var ret = '';
+		var whole = parseInt(num);
+		var dec = Math.abs(num-whole);
+
+		if(num > 0) ret += '+';
+		if(num < 0) ret += '-';
+
+
+		if(whole != 0 || this.handicapFormat == 5)
+		{
+			ret += Math.abs(whole) + '';
+		}
+
+		switch(dec)
+		{
+			default: ret += ""; break;
+			case 0.25: ret += "¼"; break;
+			case 0.5: ret += "½"; break;
+			case 0.75: ret += "¾"; break;
+		}
+
+		return ret;
+	},
+
+	formatHandicapHalfs : function(handicap)
+	{
+		var tmpHandicap = 2*handicap;
+		var dwn = Math.floor(tmpHandicap);
+		var up = Math.ceil(tmpHandicap);
+
+		// negative handicaps have reversed order
+		if(dwn < 0 || up < 0){
+			if(this.handicapFormat == 6){
+				return this.addSign(up/2) + ', ' + this.addSign(dwn/2);
+			}
+			else{
+				return (up/2) + ', ' + (dwn/2);
+			}
+		}
+		else{
+			if(this.handicapFormat == 6){
+				return this.addSign(dwn/2) + ', ' + this.addSign(up/2);
+			}
+			else{
+				return (dwn/2) + ', ' + (up/2);
+			}
+		}
+	},
+
+	addSign: function(num, positive_only)
+	{
+		if(num*1 > 0){
+			return '+' + num;
+		}
+		if(num*1 < 0 && positive_only != undefined){
+			return '-' + num;
+		}
+		return num;
+	},
+
+	formatHandicapHalfsQuarterOnly : function(handicap)
+	{
+		var whole = parseInt(handicap);
+		var dec = Math.abs(handicap-whole);
+		if(dec == 0.25 || dec == 0.75){
+		return this.formatHandicapHalfs(handicap);
+		}
+		else{
+			if(this.handicapFormat == 6){
+				return this.addSign(handicap);
+			}
+			else{
+				return handicap;
+			}
+		}
+
+	},
+
+	addPositiveChar : function(num)
+	{
+		if(num>0) num = '+' + num;
+		return num;
+	},
+
+	formatHandicapUs : function(handicap)
+	{
+		return this.usFloat(handicap) + '/' + this.usFloat(-1*handicap);
+	},
+
+
+
+	formatOdd : function(num, returnOne){
+		if(!num) return '';
+		num = num * 1;
+		if (num > 0.999 && num < 1.001 && !returnOne) {
+			return null;
+		}
+
+		switch(this.oddsFormat)
+		{
+			case 1:
+				return this.formatTwodigits(num);
+			case 2:
+				return this.formatUk(num);
+			case 3:
+				return this.formatUs(num);
+			case 4:
+				return this.formatHk(num);
+			case 5:
+				return this.formatMa(num);
+			case 6:
+				return this.formatIn(num);
+			case 10:
+				return this.formatUkShort(num);
+		}
+
+
+	},
+
+
+
+	formatUs : function(decimal) {
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return '-25000';
+		}
+
+		if (decimal >= 2) {
+			return '+' + Math.floor((decimal - 1) * 100);
+		} else if (decimal != 1) {
+			return -Math.round(100 / (decimal - 1));
+		} else {
+			return null;
+		}
+	},
+
+	formatUk : function(decimal) {
+
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return '0/1';
+		}
+
+		var numerator = Math.round(decimal * 100);
+		var denominator = 100;
+		var gcd = this.GCD(numerator, denominator);
+
+		if (gcd < -1) {
+			gcd *= -1;
+		}
+
+		if (gcd > 1) {
+			numerator /= gcd;
+			denominator /= gcd;
+		}
+
+		if (numerator > denominator) {
+			return ((Math.round(numerator) - Math.round(denominator)) + '/' + Math.round(denominator));
+		} else {
+			return (Math.round(numerator) + '/' + Math.round(denominator));
+		}
+	},
+
+	formatUkShort : function(decimal) {
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return '0/1';
+		}
+
+		var numerator = Math.round(decimal * 1000)/10 - 100;
+		var denominator = 100;
+
+		var minDelta = 100;
+
+		var numeratorFinal = null;
+		var denominatorFinal = null;
+
+
+
+		var denominatorTmp = denominator;
+		var numeratorTmp;
+		for(var i=1;i<=11;i++)
+		{
+			denominatorTmp = i;
+			numeratorTmp = numerator * (denominatorTmp)/(denominator);
+
+			var delta = Math.abs(Math.round(numeratorTmp)/Math.round(denominatorTmp) - numerator/denominator);
+
+			if( delta < minDelta )
+			{
+				minDelta = delta;
+				numeratorFinal = numeratorTmp;
+				denominatorFinal = denominatorTmp;
+			}
+
+		}
+
+
+		return (Math.round(numeratorFinal) + '/' + Math.round(denominatorFinal));
+	},
+
+	formatHk : function(decimal) {
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return this.formatTwodigits(0);
+		}
+
+		return this.formatTwodigits(decimal - 1);
+	},
+
+	formatMa : function(decimal) {
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return this.formatTwodigits(0);
+		}
+
+		if (decimal <= 2) {
+			decimal -= 1;
+		} else {
+			decimal = (1 / (decimal - 1)) * -1;
+		}
+
+		return this.formatTwodigits(decimal);
+	},
+
+	formatIn : function(decimal) {
+
+		if (decimal > 0.999 && decimal < 1.001) {
+			return '-250.00';
+		}
+
+		if (decimal <= 2) {
+			decimal = (1 / (decimal - 1)) * -1;
+		} else {
+			decimal -= 1;
+		}
+
+		return this.formatTwodigits(decimal);
+	},
+
+	GCD : function(numerator, denominator) {
+
+		var x = numerator;
+		var y = denominator;
+
+		while (y != 0) {
+			var w = x % y;
+			x = y;
+			y = w;
+		}
+
+		return x;
+	},
+
+	formatTwodigits : function(num){
+		var dnum = Math.round(num * 100)/100;
+		var twoDPString = dnum + "";
+		if (twoDPString.indexOf(".") == -1) {twoDPString += ".00"}
+		if (twoDPString.indexOf(".") == twoDPString.length-2) {twoDPString += "0"}
+		return twoDPString;
+	}
+};
+
+if (typeof window === "undefined" || window === null) {
+	exports.oddsportalFormater = oddsportalFormater;
+}
+			return oddsportalFormater;
+		})();
+

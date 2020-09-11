@@ -1,0 +1,28 @@
+
+var cssPath = "/res/styles/css/betexplorer";
+
+function checkRem(attribute, test)
+{
+	var supports = false;
+	try
+	{
+		var div = document.createElement("div");
+		div.style[attribute] = test;
+		if (div.style[attribute] === test)
+		{
+			supports = true;
+		}
+	}
+	catch(e)
+	{
+	}
+	return supports;
+}
+
+// load PX fallback for browsers not supporting REM units
+if (!checkRem("fontSize", "1rem"))
+{
+	cssPath += "-rem-fallback";
+}
+
+document.write('<link rel="stylesheet" type="text/css" media="screen" href="' + cssPath + '.css?serial=2005251124">');

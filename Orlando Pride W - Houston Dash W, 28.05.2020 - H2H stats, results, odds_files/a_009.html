@@ -1,0 +1,75 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="a_data_009/publishertag.js"></script><script type="text/javascript" async="" src="a_data_009/prebid-1.js"></script></head><body style="margin:0;padding:0;">
+
+	
+		<script>
+    var adUnitSizes = [[300,250]];
+
+     var adUnitBids = [
+     {
+            bidder: 'ix',
+            params: {
+               siteId: '304122',
+             size: [300,250]
+            }
+        },
+        {
+            bidder: 'criteo',
+            params: {
+               zoneId: '1346709'
+            }
+        }
+    ]
+   
+    var passbackTagHtml = '<a href="https://www.bet365.com/olp/open-account?affiliate=3365_549965" target="_blank"><img alt="bet365" src="https://content.livesportmedia.eu/media?name=300x250_15en.gif&type=gif" style="width: 300px; height: 250px; " /></a>'
+
+    // ======= DO NOT EDIT BELOW THIS LINE =========== //
+    
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+
+    (function() {
+        var pbjsEl = document.createElement("script"); pbjsEl.type = "text/javascript";
+        pbjsEl.async = true; var isHttps = 'https:' === document.location.protocol;
+        pbjsEl.src = "https://www.flashscore.com/x/js/prebid-1.15.0.js";
+        var pbjsTargetEl = document.getElementsByTagName("head")[0];
+        pbjsTargetEl.insertBefore(pbjsEl, pbjsTargetEl.firstChild);
+    })();
+
+    var doNotChange = 'doNotChange';
+
+    pbjs.que.push(function() {
+
+        var adUnits = [{
+          code: doNotChange,
+            mediaTypes: {
+            banner: {
+                sizes: [[300,250]]
+            }},
+            bids: adUnitBids
+        }];
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            timeout: 1000,
+            bidsBackHandler: function() {
+                var iframe = document.getElementById('postbid_if_atf');
+                var iframeDoc = iframe.contentWindow.document;
+                var params = pbjs.getAdserverTargetingForAdUnitCode(doNotChange);
+
+                if(params && params['hb_adid']){
+                    pbjs.renderAd(iframeDoc, params['hb_adid']);
+                } else {
+                    iframe.width = adUnitSizes[0][0];
+                    iframe.height = adUnitSizes[0][1];
+                    iframeDoc.write(passbackTagHtml);
+                    iframeDoc.close();
+                }
+            }
+        });
+    });  
+		</script>
+
+		<iframe id="postbid_if_atf" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="300" height="250" frameborder="0"></iframe>
+
+	
+</body></html>

@@ -1,0 +1,28 @@
+
+.in-bookmaker-logo, .in-bookmaker-logo-link
+{
+	/* background must be here, to sass we can't php serial */
+    background: url('/gres/images/bookmakerlogos.png?serial=b52ebb5a38') no-repeat 0 100px;
+}
+
+.l16{background-position: 0px -126px !important;}
+.l18{background-position: 0px -147px !important;}
+.l3{background-position: 0px -42px !important;}
+.l76{background-position: 0px -336px !important;}
+.l15{background-position: 0px -105px !important;}
+.l14{background-position: 0px -84px !important;}
+.l24{background-position: 0px -168px !important;}
+.l43{background-position: 0px -252px !important;}
+.l32{background-position: 0px -231px !important;}
+.l2{background-position: 0px -21px !important;}
+.l56{background-position: 0px -294px !important;}
+.l128{background-position: 0px -357px !important;}
+.l75{background-position: 0px -315px !important;}
+.l44{background-position: 0px -273px !important;}
+.l26{background-position: 0px -189px !important;}
+.l1{background-position: 0px 0px !important;}
+.l5{background-position: 0px -63px !important;}
+.l27{background-position: 0px -210px !important;}
+.l383{background-position: 0px -378px !important;}
+.l429{background-position: 0px -420px !important;}
+.l417{background-position: 0px -399px !important;}
