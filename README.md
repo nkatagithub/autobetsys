@@ -50,9 +50,9 @@ I am not so experienced in what i do so even a beginner can understand my code s
 
 ### Built With
 Currently its built with:
-* [Selenium for python](https://getbootstrap.com)
-* [BeautifullSoup](https://jquery.com)
-* [Requests](https://laravel.com)
+* [Selenium for python](https://selenium-python.readthedocs.io/)
+* [BeautifullSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+* [Requests](https://requests.readthedocs.io/en/master/user/quickstart/)
 * [Just get the whole anaconda engiene because its about to get hot in here]
 
 
