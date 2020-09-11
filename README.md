@@ -71,9 +71,9 @@ We plan on adding these soon
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/nkatagithub/autobetsys.svg?style=flat-square
 [forks-url]: https://github.com/nkatagithub/autobetsys/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/nkatagithub/autobetsys.svg?style=flat-square
 [stars-url]: https://github.com/nkatagithub/autobetsys/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-shield]: https://img.shields.io/github/issues/nkatagithub/autobetsys.svg?style=flat-square
 [issues-url]: https://github.com/nkatagithub/autobetsys/issues
