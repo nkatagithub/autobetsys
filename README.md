@@ -50,7 +50,6 @@ I am not so experienced in what i do so even a beginner can understand my code s
 
 ### Built With
 Currently its built with:
-* [Selenium for python](https://selenium-python.readthedocs.io/)
 * [BeautifullSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 * [Requests](https://requests.readthedocs.io/en/master/user/quickstart/)
 * [Just get the whole anaconda engiene because its about to get hot in here]
@@ -60,7 +59,8 @@ Currently its built with:
 ## Roadmap
 We plan on adding these soon
 * Gui with good visualisation in pyqt.
-* Neuralnet to optimise data and create more algorithms thru personal learning.
+* After visualisation is complete, we shall collect more data and feed the system to learn on its own.
+* Because i want it to be a lazy investment, we shall further more make the ai to bet on its own and just visualise its processes so that we keep up.
 * Another bot to create multiple accounts on many betting systems and bet.
 * Bot to gather data for statistical calculations(for each footballer(injury, previous performance, league performance, home and away, blabla))
 
